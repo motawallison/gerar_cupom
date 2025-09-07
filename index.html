@@ -69,7 +69,8 @@
             color: #555;
         }
 
-        input {
+        input,
+        select {
             width: 100%;
             padding: 14px;
             border: 2px solid #ddd;
@@ -78,9 +79,19 @@
             transition: border-color 0.3s;
         }
 
-        input:focus {
+        input:focus,
+        select:focus {
             border-color: #6a3093;
             outline: none;
+        }
+
+        .date-fields {
+            display: flex;
+            gap: 10px;
+        }
+
+        .date-fields select {
+            flex: 1;
         }
 
         button {
@@ -255,6 +266,11 @@
                             <input type="email" id="email" name="email" required placeholder="tu.correo@exemplo.com">
                         </div>
 
+                        <div class="form-group">
+                            <label for="birthdate">Fecha de Nacimiento:</label>
+                            <input type="date" id="birthdate" name="birthdate" required>
+                        </div>
+
                         <button type="submit" id="submitBtn">Generar Cupon</button>
                     </form>
 
@@ -262,7 +278,7 @@
 
                     <div class="loading" id="loading">
                         <div class="loading-spinner"></div>
-                        <p>Generando cupom...</p>
+                        <p>Generando cupón...</p>
                     </div>
 
                     <div class="success-message" id="successMessage">
@@ -297,7 +313,7 @@
                 const submitBtn = document.getElementById('submitBtn');
 
                 // URL única para todas as operações
-                const webAppUrl = 'https://script.google.com/macros/s/AKfycbxR_DcHVoLPjxU65obAn8bVYlofVu3kEO1O2j0vU9I1M0cDxIv1LZ-7Dc01ZCXQdhFAmQ/exec';
+                const webAppUrl = 'https://script.google.com/macros/s/AKfycbx5oLErAi7JnKDRRLbQdURijwCphLGNQ-5Yz1P259HdE6lxgDIQQS-WQQaPmmDm41j5eA/exec';
 
                 // Função para verificar se email ou telefone já existem
                 async function checkExistingData(email, phone) {
@@ -328,6 +344,14 @@
                     const name = document.getElementById('name').value;
                     const phone = document.getElementById('phone').value;
                     const email = document.getElementById('email').value;
+                    const birthdate = document.getElementById('birthdate').value;
+
+                    // Validar data de nascimento
+                    if (!birthdate) {
+                        errorMessage.textContent = 'Por favor, ingresa tu fecha de nacimiento.';
+                        errorMessage.style.display = 'block';
+                        return;
+                    }
 
                     // Mostrar loading
                     submitBtn.style.display = 'none';
@@ -360,7 +384,7 @@
                         const coupon = `${initials}${randomNum}`;
 
                         // Enviar dados para o Google Sheets
-                        await sendDataToGoogleSheets(name, phone, email, coupon);
+                        await sendDataToGoogleSheets(name, phone, email, birthdate, coupon);
 
                         // Mostrar cupom
                         couponCode.textContent = coupon;
@@ -384,11 +408,12 @@
                 });
 
                 // Função para enviar dados para o Google Sheets
-                async function sendDataToGoogleSheets(name, phone, email, coupon) {
+                async function sendDataToGoogleSheets(name, phone, email, birthdate, coupon) {
                     const formData = new FormData();
                     formData.append('name', name);
                     formData.append('phone', phone);
                     formData.append('email', email);
+                    formData.append('birthdate', birthdate);
                     formData.append('coupon', coupon);
                     formData.append('timestamp', new Date().toISOString());
 
