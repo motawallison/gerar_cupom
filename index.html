@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro com Cupom de Desconto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3e2da 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #688A65, #97AC83);
+            color: white;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #6a3093;
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, #688A65, #97AC83);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #97AC83, #688A65);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
+        }
+
+        .coupon-section {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #97AC83, #a7e6a2);
+            border-radius: 10px;
+            color: white;
+            margin-top: 25px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .coupon-code {
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin: 20px 0;
+            background: white;
+            color: #000000;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .coupon-desc {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            color: #28a745;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            display: none;
+            padding: 10px;
+            background-color: #f8d7da;
+            border-radius: 5px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #688A65;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            background: #f9f9f9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            margin-top: 15px;
+        }
+
+        .print-btn:hover {
+            background: linear-gradient(135deg, #183c1a, #4CAF50);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 5px auto;
+            width: 150px;
+            height: 70px;
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 0%;
+            background: rgba(255, 255, 255, 0);
+            padding: 0px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container">
+            <header>
+                <div class="logo-container">
+                    <img src="https://imgur.com/807YfIs.png" alt="Bestys Café" class="logo">
+                </div>
+                <h1>Bestys Café</h1>
+                <p>Regístrate y recibe un regalo!</p>
+            </header>
+
+            <div class="content">
+                <section class="form-section">
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu Nombre">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Teléfono:</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+595 973 757777">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico:</label>
+                            <input type="email" id="email" name="email" required placeholder="tu.correo@exemplo.com">
+                        </div>
+
+                        <button type="submit" id="submitBtn">Generar Cupon</button>
+                    </form>
+
+                    <div class="error-message" id="errorMessage"></div>
+
+                    <div class="loading" id="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Generando cupom...</p>
+                    </div>
+
+                    <div class="success-message" id="successMessage">
+                        Cupón generado!
+                    </div>
+                </section>
+
+                <section class="coupon-section" id="couponSection">
+                    <h2>Americano + cookies</h2>
+                    <div class="coupon-desc">Presenta este código en tu próxima visita</div>
+                    <div class="coupon-code" id="couponCode"></div>
+                    <p>Válido por 30 días</p>
+
+                    <button class="print-btn" onclick="window.print()">Imprimir cupón</button>
+                </section>
+            </div>
+
+            <footer>
+                <p>Oferta válida por tiempo limitado. Consulta los términos y condiciones con nuestro equipo de gestión.
+                </p>
+            </footer>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('registrationForm');
+                const couponSection = document.getElementById('couponSection');
+                const couponCode = document.getElementById('couponCode');
+                const successMessage = document.getElementById('successMessage');
+                const errorMessage = document.getElementById('errorMessage');
+                const loading = document.getElementById('loading');
+                const submitBtn = document.getElementById('submitBtn');
+
+                // URL única para todas as operações
+                const webAppUrl = 'https://script.google.com/macros/s/AKfycbxR_DcHVoLPjxU65obAn8bVYlofVu3kEO1O2j0vU9I1M0cDxIv1LZ-7Dc01ZCXQdhFAmQ/exec';
+
+                // Função para verificar se email ou telefone já existem
+                async function checkExistingData(email, phone) {
+                    try {
+                        const response = await fetch(`${webAppUrl}?action=check&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+
+                        if (!response.ok) {
+                            throw new Error('Falha ao verificar dados');
+                        }
+
+                        const result = await response.json();
+                        return result;
+                    } catch (error) {
+                        console.error('Erro na verificação:', error);
+                        throw error;
+                    }
+                }
+
+                // Configurar envio do formulário
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    // Esconder mensagens de erro anteriores
+                    errorMessage.style.display = 'none';
+                    errorMessage.textContent = '';
+
+                    // Coletar dados do formulário
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const email = document.getElementById('email').value;
+
+                    // Mostrar loading
+                    submitBtn.style.display = 'none';
+                    loading.style.display = 'block';
+
+                    try {
+                        // Verificar se email ou telefone já existem
+                        const checkResult = await checkExistingData(email, phone);
+
+                        if (checkResult.exists) {
+                            // Se já existir, mostrar mensagem de erro
+                            loading.style.display = 'none';
+                            submitBtn.style.display = 'block';
+
+                            if (checkResult.emailExists && checkResult.phoneExists) {
+                                errorMessage.textContent = 'Este correo electrónico y número de teléfono ya han sido registrados.';
+                            } else if (checkResult.emailExists) {
+                                errorMessage.textContent = 'Este correo electrónico ya ha sido registrado.';
+                            } else if (checkResult.phoneExists) {
+                                errorMessage.textContent = 'Este teléfono ya ha sido registrado.';
+                            }
+
+                            errorMessage.style.display = 'block';
+                            return;
+                        }
+
+                        // Gerar código do cupom (combina iniciais + números aleatórios)
+                        const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+                        const randomNum = Math.floor(1000 + Math.random() * 9000);
+                        const coupon = `${initials}${randomNum}`;
+
+                        // Enviar dados para o Google Sheets
+                        await sendDataToGoogleSheets(name, phone, email, coupon);
+
+                        // Mostrar cupom
+                        couponCode.textContent = coupon;
+                        couponSection.style.display = 'block';
+                        successMessage.style.display = 'block';
+
+                        // Esconder loading
+                        loading.style.display = 'none';
+
+                        // Rolagem suave até o cupom
+                        couponSection.scrollIntoView({ behavior: 'smooth' });
+
+                        // Limpar formulário
+                        form.reset();
+                    } catch (error) {
+                        alert('Erro ao processar cadastro. Por favor, tente novamente.');
+                        console.error('Erro:', error);
+                        loading.style.display = 'none';
+                        submitBtn.style.display = 'block';
+                    }
+                });
+
+                // Função para enviar dados para o Google Sheets
+                async function sendDataToGoogleSheets(name, phone, email, coupon) {
+                    const formData = new FormData();
+                    formData.append('name', name);
+                    formData.append('phone', phone);
+                    formData.append('email', email);
+                    formData.append('coupon', coupon);
+                    formData.append('timestamp', new Date().toISOString());
+
+                    const response = await fetch(webAppUrl, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Falha ao enviar dados para o Google Sheets');
+                    }
+
+                    return response.text();
+                }
+            });
+        </script>
+</body>
+
+</html>
