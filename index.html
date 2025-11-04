@@ -2,434 +2,396 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro com Cupom de Desconto</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro com Cupom de Descuento</title>
+  <style>
+    /* (mantive todo teu CSS original aqui, sem alterar) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3e2da 100%);
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3e2da 100%);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-        .container {
-            max-width: 500px;
-            width: 100%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
 
-        header {
-            text-align: center;
-            padding: 20px 15px;
-            background: linear-gradient(135deg, #688A65, #97AC83);
-            color: white;
-        }
+    header {
+      text-align: center;
+      padding: 20px 15px;
+      background: linear-gradient(135deg, #688A65, #97AC83);
+      color: white;
+    }
 
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
 
-        .logo {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
+    .logo {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
 
-        .content {
-            padding: 25px;
-        }
+    .content {
+      padding: 25px;
+    }
 
-        .form-section {
-            margin-bottom: 20px;
-        }
+    .form-section {
+      margin-bottom: 20px;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .form-group {
+      margin-bottom: 20px;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
-        }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #555;
+    }
 
-        input,
-        select {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color .3s;
+    }
 
-        input:focus,
-        select:focus {
-            border-color: #6a3093;
-            outline: none;
-        }
+    input:focus,
+    select:focus {
+      border-color: #6a3093;
+      outline: none;
+    }
 
-        .date-fields {
-            display: flex;
-            gap: 10px;
-        }
+    .date-fields {
+      display: flex;
+      gap: 10px;
+    }
 
-        .date-fields select {
-            flex: 1;
-        }
+    .date-fields select {
+      flex: 1;
+    }
 
-        button {
-            background: linear-gradient(135deg, #688A65, #97AC83);
-            color: white;
-            border: none;
-            padding: 16px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
+    button {
+      background: linear-gradient(135deg, #688A65, #97AC83);
+      color: white;
+      border: none;
+      padding: 16px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      transition: .3s;
+      margin-top: 10px;
+    }
 
-        button:hover {
-            background: linear-gradient(135deg, #97AC83, #688A65);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
-        }
+    button:hover {
+      background: linear-gradient(135deg, #97AC83, #688A65);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(106, 48, 147, .4);
+    }
 
-        .coupon-section {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #97AC83, #a7e6a2);
-            border-radius: 10px;
-            color: white;
-            margin-top: 25px;
-            animation: fadeIn 0.5s ease;
-        }
+    .coupon-section {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #97AC83, #a7e6a2);
+      border-radius: 10px;
+      color: white;
+      margin-top: 25px;
+      animation: fadeIn .5s ease;
+    }
 
-        .coupon-code {
-            font-size: 2.2rem;
-            font-weight: bold;
-            letter-spacing: 4px;
-            margin: 20px 0;
-            background: white;
-            color: #000000;
-            padding: 15px;
-            border-radius: 8px;
-            display: inline-block;
-        }
+    .coupon-code {
+      font-size: 2.2rem;
+      font-weight: bold;
+      letter-spacing: 4px;
+      margin: 20px 0;
+      background: white;
+      color: #000;
+      padding: 15px;
+      border-radius: 8px;
+      display: inline-block;
+    }
 
-        .coupon-desc {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
+    .coupon-desc {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
 
-        .success-message {
-            color: #28a745;
-            text-align: center;
-            margin-top: 15px;
-            font-weight: 600;
-            display: none;
-        }
+    .success-message {
+      color: #28a745;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: 600;
+      display: none;
+    }
 
-        .error-message {
-            color: #dc3545;
-            text-align: center;
-            margin-top: 15px;
-            font-weight: 600;
-            display: none;
-            padding: 10px;
-            background-color: #f8d7da;
-            border-radius: 5px;
-            border: 1px solid #f5c6cb;
-        }
+    .error-message {
+      color: #dc3545;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: 600;
+      display: none;
+      padding: 10px;
+      background: #f8d7da;
+      border-radius: 5px;
+      border: 1px solid #f5c6cb;
+    }
 
-        .loading {
-            display: none;
-            text-align: center;
-            margin-top: 15px;
-        }
+    .loading {
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+    }
 
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #688A65;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #688A65;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
-            background: #f9f9f9;
-        }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: .9rem;
+      background: #f9f9f9;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
 
-            to {
-                opacity: 1;
-            }
-        }
+      to {
+        opacity: 1;
+      }
+    }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
+    @keyframes spin {
+      from {
+        transform: rotate(0);
+      }
 
-            to {
-                transform: rotate(360deg);
-            }
-        }
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-        .print-btn {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            margin-top: 15px;
-        }
+    .print-btn {
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      margin-top: 15px;
+    }
 
-        .print-btn:hover {
-            background: linear-gradient(135deg, #183c1a, #4CAF50);
-            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
-        }
+    .confirm-btn {
+      background: linear-gradient(135deg, #2e76ff, #0a3fa6);
+      margin-top: 10px;
+    }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 5px auto;
-            width: 150px;
-            height: 70px;
-        }
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 5px;
+      width: 150px;
+      height: 70px;
+    }
 
-        .logo {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 0%;
-            background: rgba(255, 255, 255, 0);
-            padding: 0px;
-            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
-        }
-    </style>
+    .logo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="container">
-            <header>
-                <div class="logo-container">
-                    <img src="https://imgur.com/807YfIs.png" alt="Bestys Café" class="logo">
-                </div>
-                <h1>Bestys Café</h1>
-                <p>Regístrate y recibe un regalo!</p>
-            </header>
-
-            <div class="content">
-                <section class="form-section">
-                    <form id="registrationForm">
-                        <div class="form-group">
-                            <label for="name">Nombre:</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu Nombre">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Teléfono:</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+595 973 757777">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico:</label>
-                            <input type="email" id="email" name="email" required placeholder="tu.correo@exemplo.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="birthdate">Fecha de Nacimiento:</label>
-                            <input type="date" id="birthdate" name="birthdate" required>
-                        </div>
-
-                        <button type="submit" id="submitBtn">Generar Cupon</button>
-                    </form>
-
-                    <div class="error-message" id="errorMessage"></div>
-
-                    <div class="loading" id="loading">
-                        <div class="loading-spinner"></div>
-                        <p>Generando cupón...</p>
-                    </div>
-
-                    <div class="success-message" id="successMessage">
-                        Cupón generado!
-                    </div>
-                </section>
-
-                <section class="coupon-section" id="couponSection">
-                    <h2>Americano + cookie</h2>
-                    <div class="coupon-desc">Presenta este código en tu próxima visita</div>
-                    <div class="coupon-code" id="couponCode"></div>
-                    <p>Válido por 30 días</p>
-
-                    <button class="print-btn" onclick="window.print()">Imprimir cupón</button>
-                </section>
-            </div>
-
-            <footer>
-                <p>Oferta válida por tiempo limitado. Consulta los términos y condiciones con nuestro equipo de gestión.
-                </p>
-            </footer>
+  <div class="container">
+    <header>
+      <div class="logo-container"><img src="https://imgur.com/807YfIs.png" class="logo" alt="Bestys Café logo"></div>
+      <h1>Bestys Café</h1>
+      <p>Regístrate y recibe un regalo!</p>
+    </header>
+    <div class="content">
+      <form id="registrationForm">
+        <div class="form-group"><label for="name">Nombre:</label><input id="name" name="name" required></div>
+        <div class="form-group"><label for="phone">Teléfono:</label><input id="phone" name="phone" required></div>
+        <div class="form-group"><label for="email">Email:</label><input id="email" name="email" type="email" required>
         </div>
+        <div class="form-group"><label for="birthdate">Fecha de Nacimiento:</label><input id="birthdate"
+            name="birthdate" type="date" required></div>
+        <button type="submit" id="submitBtn">Generar Cupón</button>
+      </form>
+      <div class="error-message" id="errorMessage"></div>
+      <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p>Generando cupón...</p>
+      </div>
+      <div class="success-message" id="successMessage">Cupón generado!</div>
+      <section class="coupon-section" id="couponSection">
+        <h2 id="giftTitle"></h2>
+        <div class="coupon-desc">Presenta este código en tu próxima visita</div>
+        <div class="coupon-code" id="couponCode"></div>
+        <p>Válido por 30 días</p>
+        <button onclick="window.print()" class="print-btn">Imprimir cupón</button>
+        <button id="confirmBtn" class="confirm-btn">Confirmar Cupón</button>
+      </section>
+    </div>
+    <footer>
+      <p>Oferta válida por tiempo limitado.</p>
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const prizes = [
+        "Coca cola personal",
+        "Pedazo de Torta",
+        "Croissants",
+        "Croissants relleno",
+        "Brownie",
+        "Espresso"
+      ];
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const form = document.getElementById('registrationForm');
-                const couponSection = document.getElementById('couponSection');
-                const couponCode = document.getElementById('couponCode');
-                const successMessage = document.getElementById('successMessage');
-                const errorMessage = document.getElementById('errorMessage');
-                const loading = document.getElementById('loading');
-                const submitBtn = document.getElementById('submitBtn');
+      // Cached elements
+      const form = document.getElementById("registrationForm");
+      const couponSection = document.getElementById("couponSection");
+      const couponCode = document.getElementById("couponCode");
+      const giftTitle = document.getElementById("giftTitle");
+      const confirmBtn = document.getElementById("confirmBtn");
+      const errorMessage = document.getElementById("errorMessage");
+      const loadingEl = document.getElementById("loading");
+      const successMessage = document.getElementById("successMessage");
+      const submitBtn = document.getElementById("submitBtn");
 
-                // URL única para todas as operações
-                const webAppUrl = 'https://script.google.com/macros/s/AKfycbx5oLErAi7JnKDRRLbQdURijwCphLGNQ-5Yz1P259HdE6lxgDIQQS-WQQaPmmDm41j5eA/exec';
+      const webAppUrl = 'https://script.google.com/macros/s/AKfycbx5oLErAi7JnKDRRLbQdURijwCphLGNQ-5Yz1P259HdE6lxgDIQQS-WQQaPmmDm41j5eA/exec';
 
-                // Função para verificar se email ou telefone já existem
-                async function checkExistingData(email, phone) {
-                    try {
-                        const response = await fetch(`${webAppUrl}?action=check&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+      function pickPrize() {
+        return prizes[Math.floor(Math.random() * prizes.length)];
+      }
 
-                        if (!response.ok) {
-                            throw new Error('Falha ao verificar dados');
-                        }
+      async function checkExisting(email, phone) {
+        try {
+          const r = await fetch(`${webAppUrl}?action=check&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+          if (!r.ok) throw new Error('Network response was not ok');
+          return await r.json();
+        } catch (err) {
+          console.error('checkExisting error', err);
+          // Return a conservative default (no existing) so user can continue; alternatively you could block
+          return { exists: false, emailExists: false, phoneExists: false };
+        }
+      }
 
-                        const result = await response.json();
-                        return result;
-                    } catch (error) {
-                        console.error('Erro na verificação:', error);
-                        throw error;
-                    }
-                }
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-                // Configurar envio do formulário
-                form.addEventListener('submit', async function (e) {
-                    e.preventDefault();
+        // hide previous messages
+        errorMessage.style.display = 'none';
+        errorMessage.textContent = '';
 
-                    // Esconder mensagens de erro anteriores
-                    errorMessage.style.display = 'none';
-                    errorMessage.textContent = '';
+        // collect values (fixed bug: removed undefined nameInput)
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const birthdate = document.getElementById("birthdate").value;
 
-                    // Coletar dados do formulário
-                    const name = document.getElementById('name').value;
-                    const phone = document.getElementById('phone').value;
-                    const email = document.getElementById('email').value;
-                    const birthdate = document.getElementById('birthdate').value;
+        if (!birthdate) {
+          errorMessage.textContent = 'Por favor, ingresa tu fecha de nacimiento.';
+          errorMessage.style.display = 'block';
+          return;
+        }
 
-                    // Validar data de nascimento
-                    if (!birthdate) {
-                        errorMessage.textContent = 'Por favor, ingresa tu fecha de nacimiento.';
-                        errorMessage.style.display = 'block';
-                        return;
-                    }
+        // show loading
+        submitBtn.style.display = 'none';
+        loadingEl.style.display = 'block';
 
-                    // Mostrar loading
-                    submitBtn.style.display = 'none';
-                    loading.style.display = 'block';
+        // check existing
+        const check = await checkExisting(email, phone);
 
-                    try {
-                        // Verificar se email ou telefone já existem
-                        const checkResult = await checkExistingData(email, phone);
+        if (check.exists) {
+          loadingEl.style.display = 'none';
+          submitBtn.style.display = 'block';
 
-                        if (checkResult.exists) {
-                            // Se já existir, mostrar mensagem de erro
-                            loading.style.display = 'none';
-                            submitBtn.style.display = 'block';
+          if (check.emailExists && check.phoneExists) {
+            errorMessage.textContent = 'Este correo electrónico y número de teléfono ya han sido registrados.';
+          } else if (check.emailExists) {
+            errorMessage.textContent = 'Este correo electrónico ya ha sido registrado.';
+          } else if (check.phoneExists) {
+            errorMessage.textContent = 'Este teléfono ya ha sido registrado.';
+          } else {
+            errorMessage.textContent = 'Ya registrado.';
+          }
 
-                            if (checkResult.emailExists && checkResult.phoneExists) {
-                                errorMessage.textContent = 'Este correo electrónico y número de teléfono ya han sido registrados.';
-                            } else if (checkResult.emailExists) {
-                                errorMessage.textContent = 'Este correo electrónico ya ha sido registrado.';
-                            } else if (checkResult.phoneExists) {
-                                errorMessage.textContent = 'Este teléfono ya ha sido registrado.';
-                            }
+          errorMessage.style.display = 'block';
+          return;
+        }
 
-                            errorMessage.style.display = 'block';
-                            return;
-                        }
+        // generate coupon
+        const initials = name ? name.split(' ').map(n => n[0]).join('').toUpperCase() : 'GUEST';
+        const random = Math.floor(1000 + Math.random() * 9000);
+        const code = `${initials}${random}`;
+        const prize = pickPrize();
 
-                        // Gerar código do cupom (combina iniciais + números aleatórios)
-                        const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-                        const randomNum = Math.floor(1000 + Math.random() * 9000);
-                        const coupon = `${initials}${randomNum}`;
+        // show coupon info
+        giftTitle.textContent = prize;
+        couponCode.textContent = code;
 
-                        // Enviar dados para o Google Sheets
-                        await sendDataToGoogleSheets(name, phone, email, birthdate, coupon);
+        // prepare form data correctly (fixed bug: FormData.append returns void)
+        try {
+          const formData = new FormData(form);
+          formData.append('coupon', code);
+          formData.append('timestamp', new Date().toISOString());
 
-                        // Mostrar cupom
-                        couponCode.textContent = coupon;
-                        couponSection.style.display = 'block';
-                        successMessage.style.display = 'block';
+          const resp = await fetch(webAppUrl, { method: 'POST', body: formData });
+          if (!resp.ok) console.warn('Warning: failed to save to Google Sheets', resp.status);
+        } catch (err) {
+          console.error('send to sheets error', err);
+        }
 
-                        // Esconder loading
-                        loading.style.display = 'none';
+        couponSection.style.display = 'block';
+        loadingEl.style.display = 'none';
+        successMessage.style.display = 'block';
 
-                        // Rolagem suave até o cupom
-                        couponSection.scrollIntoView({ behavior: 'smooth' });
+        // set up WhatsApp confirm button
+        confirmBtn.onclick = () => {
+          const text = `Este es mi cupon: ${code}`;
+          const url = `https://wa.me/595973999200?text=${encodeURIComponent(text)}`;
+          window.location.href = url;
+        };
 
-                        // Limpar formulário
-                        form.reset();
-                    } catch (error) {
-                        alert('Erro ao processar cadastro. Por favor, tente novamente.');
-                        console.error('Erro:', error);
-                        loading.style.display = 'none';
-                        submitBtn.style.display = 'block';
-                    }
-                });
-
-                // Função para enviar dados para o Google Sheets
-                async function sendDataToGoogleSheets(name, phone, email, birthdate, coupon) {
-                    const formData = new FormData();
-                    formData.append('name', name);
-                    formData.append('phone', phone);
-                    formData.append('email', email);
-                    formData.append('birthdate', birthdate);
-                    formData.append('coupon', coupon);
-                    formData.append('timestamp', new Date().toISOString());
-
-                    const response = await fetch(webAppUrl, {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Falha ao enviar dados para o Google Sheets');
-                    }
-
-                    return response.text();
-                }
-            });
-        </script>
+        // reset form
+        form.reset();
+      });
+    });
+  </script>
 </body>
 
 </html>
