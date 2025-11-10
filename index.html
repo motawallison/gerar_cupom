@@ -239,7 +239,7 @@
     <header>
       <div class="logo-container"><img src="https://imgur.com/807YfIs.png" class="logo" alt="Bestys Café logo"></div>
       <h1>Bestys Café</h1>
-      <p>Regístrate y recibe un regalo!</p>
+      <p>Regístrate para participar en el sorteo.</p>
     </header>
     <div class="content">
       <form id="registrationForm">
@@ -259,9 +259,9 @@
       <div class="success-message" id="successMessage">Cupón generado!</div>
       <section class="coupon-section" id="couponSection">
         <h2 id="giftTitle"></h2>
-        <div class="coupon-desc">Presenta este código en tu próxima visita</div>
+        <div class="coupon-desc"></div>
         <div class="coupon-code" id="couponCode"></div>
-        <p>Válido por 30 días</p>
+        <p></p>
         <button onclick="window.print()" class="print-btn">Imprimir cupón</button>
         <button id="confirmBtn" class="confirm-btn">Confirmar Cupón</button>
       </section>
@@ -273,12 +273,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const prizes = [
-        "Coca cola personal",
-        "Pedazo de Torta",
-        "Croissants",
-        "Croissants relleno",
-        "Brownie",
-        "Espresso"
+
       ];
 
       // Cached elements
@@ -383,7 +378,7 @@
         // set up WhatsApp confirm button
         confirmBtn.onclick = () => {
           const text = `Este es mi cupon: ${code}`;
-          const url = `https://wa.me/595973999200?text=${encodeURIComponent(text)}`;
+          const url = `https://wa.me/5950973999200?text=${encodeURIComponent(text)}`;
           window.location.href = url;
         };
 
